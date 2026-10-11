@@ -3,15 +3,16 @@
 Use the package that owns the behavior. The Angular app composes these packages;
 package code must respect the [sync dependency boundaries](../docs/sync-and-op-log/package-boundaries.md).
 
-| Package                                          | Responsibility / starting point                                                                        |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| [sync-core](sync-core/README.md)                 | Framework-independent sync primitives, conflicts, clocks, compression, encryption                      |
-| [sync-providers](sync-providers/src/)            | Provider contracts, transports, credential storage, and platform adapters                              |
-| [shared-schema](shared-schema/src/)              | Shared schema versions, validation, and migrations                                                     |
-| [super-sync-server](super-sync-server/README.md) | Hosted sync API, accounts, and database; [server architecture](super-sync-server/docs/architecture.md) |
-| [plugin-api](plugin-api/README.md)               | Public types consumed by third-party plugins                                                           |
-| [plugin-dev](plugin-dev/)                        | Plugin implementations and examples; [development guide](../docs/plugin-development.md)                |
-| [vite-plugin](vite-plugin/src/)                  | Build tooling for plugins                                                                              |
+| Package                                          | Responsibility / starting point                                                                                                    |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [sync-core](sync-core/README.md)                 | Framework-independent sync primitives, conflicts, clocks, compression, encryption                                                  |
+| [sync-providers](sync-providers/src/)            | Provider contracts, transports, credential storage, and platform adapters                                                          |
+| [shared-schema](shared-schema/src/)              | Shared schema versions, validation, and migrations                                                                                 |
+| [super-sync-server](super-sync-server/README.md) | Hosted sync API, accounts, and database; [server architecture](super-sync-server/docs/architecture.md)                             |
+| [sqlite-server](sqlite-server/README.md)         | Self-hosted SuperSync-compatible server on SQLite with relational projection and REST API for MCP; [roadmap](../sqlite-roadmap.md) |
+| [plugin-api](plugin-api/README.md)               | Public types consumed by third-party plugins                                                                                       |
+| [plugin-dev](plugin-dev/)                        | Plugin implementations and examples; [development guide](../docs/plugin-development.md)                                            |
+| [vite-plugin](vite-plugin/src/)                  | Build tooling for plugins                                                                                                          |
 
 ## Validation
 
@@ -32,6 +33,7 @@ are separate checks; one does not imply the others ran.
 | sync-core         | `npm run sync-core:build` and `npm run sync-core:test` (includes test type checking)                                                                                               |
 | sync-providers    | `npm run sync-providers:build` and `npm run sync-providers:test` (includes test type checking)                                                                                     |
 | shared-schema     | `npm run shared-schema:build` and `npm run shared-schema:test`                                                                                                                     |
+| sqlite-server     | `npm --prefix packages/sqlite-server run build` (server + engine bundle from app sources) and `npm --prefix packages/sqlite-server test` (real SQLite files)                       |
 | super-sync-server | `npm --prefix packages/super-sync-server run build` and `npm --prefix packages/super-sync-server test` (pretest generates Prisma client; see [setup](super-sync-server/README.md)) |
 | plugin-api        | `npm --prefix packages/plugin-api run typecheck`; `npm run plugin-api:build` when consumers need updated declarations                                                              |
 | vite-plugin       | `npm run vite-plugin:build`                                                                                                                                                        |
